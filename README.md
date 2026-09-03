@@ -1,34 +1,37 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-2.0-green?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Tool-Apache%20Virtual%20Host-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Version-3.0-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Tool-Virtual%20Host%20Manager-blue?style=for-the-badge">
   <img src="https://img.shields.io/badge/Made%20With-Bash-1f425f?style=for-the-badge">
 </p>
 
-<h1 align="center">🐧 AUTO-VHOST</h1>
+<h1 align="center">🐧 HEX-VHOST-MANAGER</h1>
 
 <p align="center">
-  <b>"Just run it, and your site is live!"</b> — A clean, automated, and bug-free Bash script to create Apache Virtual Hosts, generate custom HTML pages, update /etc/hosts, and reload Apache — all with a single command.
+  <b>"Manage Apache Virtual Hosts like a Pro!"</b> — The ultimate interactive tool to create, manage, secure, backup, and optimize your Apache Virtual Hosts, complete with WordPress auto-installation and SSL support.
 </p>
 
 ---
 
 ## 🚀 Features
 
-- 🏗️ **Automatically creates** the Virtual Host configuration file from `000-default.conf`.
-- 🌐 **Replaces** `ServerName` and `DocumentRoot` with your custom domain.
-- 📁 **Creates** the target directory and a brand new `index.html`.
-- ⚡ **Enables** the site and reloads Apache.
-- 🖥️ **Updates** `/etc/hosts` so you can access the site locally.
-- 🔒 **Error checking** in every step to ensure smooth execution.
+- 🏗️ **Create Vhosts** — Fully automated setup with custom ServerName, DocumentRoot, and index.html.
+- 📋 **List All Vhosts** — View active and disabled sites instantly.
+- 🔒 **Enable SSL** — Install Let's Encrypt or manual SSL certificates.
+- 🗑️ **Delete Vhosts** — Secure removal of configurations, directories, and DNS records.
+- 💾 **Backup** — Create full backups of configuration and site files.
+- 📜 **View Logs** — Diagnose issues by viewing error logs.
+- 🩺 **Check Status** — Ping and HTTP status check of your site.
+- 🌐 **WordPress Install** — Auto-install WordPress with WP-CLI.
+- 🖥️ **Interactive Menu** — Easy to use, color-coded terminal UI.
 
 ## 📥 Installation
 
 ```bash
 # Make the script executable
-chmod +x auto-vhost.sh
+chmod +x hex-vhost-manager.sh
 ```
 ---
-## ⚠️ Requirements: Apache2, root privileges (sudo), and Bash.
+## ⚠️ Requirements: Apache2, root privileges (sudo), and Bash. For SSL, install certbot. For WordPress, install wp-cli.
 
 ## 🎯 Usage
 
@@ -37,19 +40,21 @@ chmod +x auto-vhost.sh
 
 
 ## 🛠️ How It Works
-**Reads the desired Virtual Host name**.
+**Create: Reads Vhost name & ServerName, copies default config, sets paths, creates directory, enables site, updates /etc/hosts, and generates HTML.**
 
-Enters the ServerName (domain name).
+List: Shows active and disabled sites.
 
-Creates the config file in` /etc/apache2/sites-available/.`
+SSL: Option to use certbot for free HTTPS certificates.
 
-Creates the directory in `/var/www/html/`.
+Delete: Safely removes everything related to the site.
 
-Enables the site and reloads Apache.
+Backup: Stores copies in `/root/backups/.`
 
-Adds the domain to `/etc/hosts` for local testing.
+Logs: Shows the last 20 lines of the error log.
 
-Generates a custom HTML file.
+Status: Pings the domain and checks if it returns HTTP 200.
+
+WordPress: Uses WP-CLI to download, configure, and install WordPress automatically..
 ---
 
 ## 🧑‍💻 Author
@@ -58,8 +63,8 @@ Generates a custom HTML file.
 - **TryHackMe:** [HEXD](https://tryhackme.com/p/HEXD)
 ---
 ## ⚠️ Disclaimer
+***This tool is intended for local development, authorized security testing, and system administration purposes only. Run it only on systems you own or have permission to manage.***
 
-This tool is intended for **authorized security testing and educational purposes only**. Use it only on systems you own or have explicit permission to test. Unauthorized use is strictly prohibited.
 
 ---
 
