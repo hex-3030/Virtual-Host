@@ -111,25 +111,266 @@ create_vhost() {
     echo -e "${GREEN}[+] Creating index.html file...${NC}"
     cat << 'EOF' > "$WWW_ROOT/$servername/index.html"
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Website</title>
+    <title>My Awesome Website</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
-        header { background: #007bff; color: white; padding: 10px 0; text-align: center; }
-        main { margin-top: 20px; }
-        footer { text-align: center; margin-top: 20px; padding: 10px 0; background: #007bff; color: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* هاله‌های نوری متحرک */
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .glow-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 0, 128, 0.3);
+            top: -100px;
+            left: -100px;
+        }
+
+        .glow-2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(0, 255, 255, 0.3);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 2s;
+        }
+
+        .glow-3 {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 0, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.2); }
+        }
+
+        /* متن تایپ شونده */
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #00ffff;
+            width: 0;
+            animation: typing 2.5s steps(30, end) forwards, blink 0.75s step-end infinite;
+            font-size: 1.5em;
+            color: #00ffff;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* تیتر اصلی */
+        .hero-title {
+            font-size: 4em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* دکمه‌ها */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff006e, #ff8c00);
+            box-shadow: 0 5px 15px rgba(255, 0, 110, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 0, 110, 0.6);
+        }
+
+        .btn-secondary {
+            background: #24243e;
+            border: 1px solid #00ffff;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.4);
+        }
+
+        /* پایین صفحه */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8em;
+            color: #666;
+            letter-spacing: 1px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ترمینال هکر */
+        .terminal {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            animation: fadeInUp 1.8s ease-out;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .terminal-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-body {
+            padding-top: 10px;
+            font-size: 0.9em;
+            color: #00ffff;
+        }
+
+        .terminal-body p {
+            margin-bottom: 5px;
+        }
+
+        .terminal-body .cmd {
+            color: #ffffff;
+        }
+
+        .terminal-body .out {
+            color: #a0a0a0;
+        }
+
+        .terminal-body .ok {
+            color: #27c93f;
+        }
     </style>
 </head>
 <body>
-    <header><h1>Welcome to My Website</h1></header>
-    <main>
-        <h2>Hello, World!</h2>
-        <p>This is a simple HTML page. You can modify it as you like.</p>
-    </main>
-    <footer><p>&copy; 2024 My Website</p></footer>
+    <!-- هاله‌های نوری -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <div class="terminal-body">
+            <p class="cmd">$ ssh root@mysite.local</p>
+            <p class="out">Connecting to server...</p>
+            <p class="ok">[OK] Connection established.</p>
+            <p class="cmd">$ whoami</p>
+            <p class="ok">root</p>
+            <p class="cmd">$ cat welcome.txt</p>
+            <p class="out">Welcome to my awesome website!</p>
+        </div>
+    </div>
+
+    <h1 class="hero-title">Welcome To My Website</h1>
+    <h2 class="typing">Building the future, one line at a time...</h2>
+    <p class="hero-subtitle">A modern, professional, and fully responsive website created by HEX-VHOST-MANAGER.</p>
+
+    <div class="btn-group">
+        <a href="#" class="btn btn-primary">🚀 Get Started</a>
+        <a href="#" class="btn btn-secondary">📞 Contact Us</a>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 My Website. All Rights Reserved. | Created with 💖 by HEX-VHOST-MANAGER
+    </div>
 </body>
 </html>
 EOF
